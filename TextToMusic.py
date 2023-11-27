@@ -15,7 +15,7 @@ def main():
     # fs.open("soundfont.SF2")
     # fs.program_set(0, 6)
     # fluidsynth.settings_add("synth.gain", 2.0)
-    fluidsynth.init("soundfont.SF2")
+    fluidsynth.init("FluidR3_GM2-2.SF2.SF2")
     fluidsynth.set_instrument(1, 6)
     for letter in text:
         if letter in dict.keys():
