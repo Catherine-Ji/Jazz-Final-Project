@@ -1,9 +1,9 @@
 import string
-# from mingus.midi import fluidsynth
+from mingus.midi import fluidsynth
 from mingus.containers import Note
 import time
 import random
-import fluidsynth
+# import fluidsynth
 
 
 def main():
@@ -11,12 +11,12 @@ def main():
     text = input("please enter your text: ")
     while not isEnglish(text):
         text = input("Sorry, your string contains non-English characters, please try again:")
-    fs = fluidsynth.Synth()
-    fs.open("soundfont.SF2")
-    fs.program_set(0, 6)
+    # fs = fluidsynth.Synth()
+    # fs.open("soundfont.SF2")
+    # fs.program_set(0, 6)
     # fluidsynth.settings_add("synth.gain", 2.0)
-    # fluidsynth.init("soundfont.SF2")
-    # fluidsynth.set_instrument(1, 6)
+    fluidsynth.init("soundfont.SF2")
+    fluidsynth.set_instrument(1, 6)
     for letter in text:
         if letter in dict.keys():
             n = Note(dict[letter.lower()])
@@ -24,17 +24,17 @@ def main():
             n = Note(dict[random.choice(string.ascii_letters).lower()])
         n.channel = 0
         n.velocity = 50
-        fs.program_change(0, 100, 127)
-        # fluidsynth.play_Note(n)
-        # time.sleep(0.2)
-        # fluidsynth.stop_Note(n)
-        
-        # Play the note and wait for 0.2 seconds
-        fs.note_on(n)
+        fluidsynth.play_Note(n)
         time.sleep(0.2)
+        fluidsynth.stop_Note(n)
+
+        # fs.program_change(0, 100, 127)
+        # Play the note and wait for 0.2 seconds
+        # fs.note_on(n)
+        # time.sleep(0.2)
 
         # Stop the note
-        fs.note_off(n)
+        # fs.note_off(n)
 
     
 dict = {
