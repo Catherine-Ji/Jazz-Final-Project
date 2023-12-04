@@ -73,9 +73,9 @@ def main():
             if letter in dict.keys():
                 n = Note(dict[letter.lower()])
             elif letter in punctation_dict:
-                snare_sound_file = "./snare.wav"  # Replace with the path to your snare drum sound file
+                perc_sound_file = "./PercussionFiles/cymbal.mp3" # Replace with the path to your percussion sound file
                 for _ in range(punctation_dict[letter]):
-                    play_drum_sound(snare_sound_file)
+                    play_drum_sound(perc_sound_file)
                     n = Note(dict[random.choice(string.ascii_letters).lower()])
                     n.channel = 0
                     n.velocity = 50
@@ -102,6 +102,7 @@ def isEnglish(text):
 def play_drum_sound(sound_file):
     pygame.mixer.init()
     sound = pygame.mixer.Sound(sound_file)
+    sound.set_volume(0.04)
     sound.play()
     time.sleep(1)
 
